@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="pdfmake.min.js"></script>
+<script src="vfs_fonts.js"></script>
+<script>
+    $(document).ready(function () {
+        pdfMake.fonts = {
+            msyh:{
+                normal:'msyh.ttf'
+            }
+        };
+
+        var docDefinition = {
+//            content: [
+//                // if you don't need styles, you can use a simple string to define a paragraph
+//                'This is a standard paragraph, using default style',
+//
+//                // using a { text: '...' } object lets you set styling properties
+//                { text: 'This paragraph will have a bigger font', fontSize: 15 },
+//
+//                // if you set pass an array instead of a string, you'll be able
+//                // to style any fragment individually
+//                {
+//                    text: [
+//                        'This paragraph is defined as an array of elements to make it possible to ',
+//                        { text: 'restyle part of it and make it bigger ', fontSize: 15 },
+//                        'than the rest.'
+//                    ]
+//                }
+//            ],
+//            content: [
+//                { text: 'This is a header', style: 'header' },
+//                'No styling here, this is a standard paragraph',
+//                { text: 'Another text', style: 'anotherStyle' },
+//                { text: 'Multiple styles applied', style: [ 'header', 'anotherStyle' ] }
+//            ],
+//
+//            styles: {
+//                header: {
+//                    fontSize: 22
+//                },
+//                anotherStyle: {
+//                    alignment: 'right'
+//                }
+//            },
+//            content: [
+//                'This paragraph fills full width, as there are no columns. Next paragraph however consists of three columns',
+//                {
+//                    columns: [
+//                        {
+//                            // auto-sized columns have their widths based on their content
+//                            width: 'auto',
+//                            text: 'First column'
+//                        },
+//                        {
+//                            // star-sized columns fill the remaining space
+//                            // if there's more than one star-column, available width is divided equally
+//                            width: '*',
+//                            text: 'Second column'
+//                        },
+//                        {
+//                            // fixed width
+//                            width: 100,
+//                            text: 'Third column'
+//                        },
+//                        {
+//                            // percentage width
+//                            width: '10%',
+//                            text: 'Last column'
+//                        }
+//                    ],
+//                    // optional space between columns
+//                    columnGap: 10
+//                },
+//                'This paragraph goes below all columns and has full width'
+//            ],
+//            content: [
+//                {
+//                    table: {
+//                        // headers are automatically repeated if the table spans over multiple pages
+//                        // you can declare how many rows should be treated as headers
+//                        headerRows: 1,
+//                        widths: [ '*', 'auto', 100, '*' ],
+//
+//                        body: [
+//                            [ 'First', 'Second', 'Third', 'The last one' ],
+//                            [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' ],
+//                            [ { text: 'Bold value' }, 'Val 2', 'Val 3', 'Val 4' ]
+//                        ]
+//                    }
+//                }
+//            ],
+//            content: [
+//                'Bulleted list example:',
+//                {
+//                    // to treat a paragraph as a bulleted list, set an array of items under the ul key
+//                    ul: [
+//                        'Item 1',
+//                        'Item 2',
+//                        'Item 3',
+//                        { text: 'Item 4' },
+//                    ]
+//                },
+//
+//                'Numbered list example:',
+//                {
+//                    // for numbered lists set the ol key
+//                    ol: [
+//                        'Item 1',
+//                        'Item 2',
+//                        'Item 3'
+//                    ]
+//                }
+//            ],
+            pageSize:'A4',
+            content:[
+                {
+                    text: '杭州市解放军第117医院',
+                    fontSize:15,
+                    alignment: 'center'
+                },
+                {
+                    text: '血液净化记录单',
+                    fontSize:10,
+                    alignment: 'center'
+                },
+                    '---------------------------------------------------------------------------------------------------',
+                {
+                    table: {
+                        widths: ['*', '*', '*'],
+                        body: [
+                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
+                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
+                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
+                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}]
+                        ]
+                    }
+                },
+                {
+                    text: '病情及处理：',
+                    fontSize:13
+                },
+                {
+                    table: {
+                        widths: ['*'],
+                        body: [
+                                [{text:'病情',color:'blue'}]
+                        ]
+                    }
+                },
+                {
+                    text: '医嘱用药：',
+                    fontSize:13
+                },
+                {
+                    table: {
+                        widths: ['*'],
+                        body: [
+                            [{text:'用药',color:'blue'}]
+                        ]
+                    }
+                },
+                {
+                    text: '透析过程记录：',
+                    fontSize:13
+                },
+                {
+                    table: {
+                        widths: ['*', '*', '*', '*'],
+                        body: [
+                            [ 'width=100', 'star-sized', 'width=200', 'star-sized'],
+                            [ 'fixed-width cells have exactly the specified width', {text:['aa',{text:'aa',color:'blue'}]}, { text: 'nothing interesting here', color: 'gray' }, { text: 'nothing interesting here', color: 'gray' }],
+                            [ 'fixed-width cells have exactly the specified width', {text:['aa',{text:'aa',color:'blue'}]}, { text: 'nothing interesting here', color: 'gray' }, { text: 'nothing interesting here', color: 'gray' }],
+                            [ 'fixed-width cells have exactly the specified width', {text:['aa',{text:'aa',color:'blue'}]}, { text: 'nothing interesting here', color: 'gray' }, { text: 'nothing interesting here', color: 'gray' }]
+                        ]
+                    }
+                },
+                {
+                    text: '透析小结：',
+                    fontSize:13
+                },
+                {
+                    table: {
+                        widths: ['*', '*', '*'],
+                        body: [
+                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
+                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
+                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
+                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}]
+                        ]
+                    }
+                },
+
+            ],
+            defaultStyle:{
+                font:'msyh'
+            }
+        };
+        pdfMake.createPdf(docDefinition).open();
+    });
+</script>
+</body>
+</html>
