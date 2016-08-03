@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-
+<button id="export">生成</button>
 
 
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -17,6 +17,11 @@
             msyh:{
                 normal:'msyh.ttf'
             }
+        };
+
+        var data = {
+            date:'2016-08-01',
+            name:'童凤英'
         };
 
         var docDefinition = {
@@ -124,88 +129,174 @@
             pageSize:'A4',
             content:[
                 {
-                    text: '杭州市解放军第117医院',
-                    fontSize:15,
-                    alignment: 'center'
+                    text: '中国人民解放军第一一七医院',
+                    style:['header']
                 },
                 {
                     text: '血液净化记录单',
-                    fontSize:10,
-                    alignment: 'center'
+                    style:['center','text']
                 },
-                    '---------------------------------------------------------------------------------------------------',
+                {
+                    text: [
+                        {
+                            text: '透析日期：',
+                            style:['text','right']
+                        },
+                        {
+                            text: data.date,
+                            style:['right','data']
+                        },
+                    ]
+                },
+                '---------------------------------------------------------------------------------------------------',
                 {
                     table: {
-                        widths: ['*', '*', '*'],
+                        widths: ['*', '*', '*','*'],
                         body: [
-                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
-                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
-                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
-                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}]
+                            [{text:[{text:'姓名：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'性别：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'年龄：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'医保号：',style:'text'},{text:data.name,style:'data'}]}],
+                            [{text:[{text:'透析机位：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'透析方式：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'透析器：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'血管通路：',style:'text'},{text:data.name,style:'data'}]}]
                         ]
                     }
                 },
                 {
-                    text: '病情及处理：',
-                    fontSize:13
+                    table: {
+                        widths: [248, '*','*'],
+                        body: [
+                            [{text:[{text:'透析前/后体重(kg)：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'干体重(kg)：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'目标定容量(kg)：',style:'text'},{text:data.name,style:'data'}]}]
+                        ]
+                    }
+                },
+                {
+                    table: {
+                        widths: ['*', '*', '*','*'],
+                        body: [
+                            [{text:[{text:'总定容量(kg)：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'预透析时间：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'实际透析时间：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'透析始/末时间：',style:'text'},{text:data.name,style:'data'}]}],
+                            [{text:[{text:'封管液：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'置换液量(L)：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'透析液流量：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'低分子肝素(ui)：',style:'text'},{text:data.name,style:'data'}]}],
+                            [{text:[{text:'透析液处方：K+',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'Na+：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'Ca+：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'可调钠(mol/L)：',style:'text'},{text:data.name,style:'data'}]}]
+                        ]
+                    }
                 },
                 {
                     table: {
                         widths: ['*'],
                         body: [
-                                [{text:'病情',color:'blue'}]
+                                [{text:[{text:'上机/管组：',style:'text'},{text:data.name,style:'data'}]}]
                         ]
                     }
                 },
                 {
-                    text: '医嘱用药：',
-                    fontSize:13
+                    text: ' '
+                },
+                {
+                    text: '医嘱'
                 },
                 {
                     table: {
                         widths: ['*'],
                         body: [
-                            [{text:'用药',color:'blue'}]
+                            [
+                                {
+                                    ul: [
+                                        'item 1',
+                                        'item 2',
+                                        'item 3',
+                                        'item 2',
+                                        'item 3'
+                                    ],
+                                    style:['data']
+                                }
+                            ]
                         ]
                     }
                 },
                 {
-                    text: '透析过程记录：',
-                    fontSize:13
+                    text: '  '
+                },
+                {
+                    text: '透析过程记录：'
                 },
                 {
                     table: {
-                        widths: ['*', '*', '*', '*'],
+                        widths: [50, '*', '*','*','*', '*', '*','*','*', '*', '*',100],
                         body: [
-                            [ 'width=100', 'star-sized', 'width=200', 'star-sized'],
-                            [ 'fixed-width cells have exactly the specified width', {text:['aa',{text:'aa',color:'blue'}]}, { text: 'nothing interesting here', color: 'gray' }, { text: 'nothing interesting here', color: 'gray' }],
-                            [ 'fixed-width cells have exactly the specified width', {text:['aa',{text:'aa',color:'blue'}]}, { text: 'nothing interesting here', color: 'gray' }, { text: 'nothing interesting here', color: 'gray' }],
-                            [ 'fixed-width cells have exactly the specified width', {text:['aa',{text:'aa',color:'blue'}]}, { text: 'nothing interesting here', color: 'gray' }, { text: 'nothing interesting here', color: 'gray' }]
+                            [{text:'时间',style:'smallText'},{text:'电导',style:'smallText'},{text:'温度℃',style:'smallText'},[{text:'超滤率',style:'smallText'},{text:'ml/h',style:'smallText'}],[{text:'跨膜压',style:'smallText'},{text:'mmHg',style:'smallText'}],[{text:'静脉压',style:'smallText'},{text:'mmHg',style:'smallText'}],[{text:'血流量',style:'smallText'},{text:'ml/min',style:'smallText'}],{text:'T℃',style:'smallText'},[{text:'P',style:'smallText'},{text:'次/分',style:'smallText'}],[{text:'R',style:'smallText'},{text:'次/分',style:'smallText'}],[{text:'BP',style:'smallText'},{text:'mmHg',style:'smallText'}],{text:'病情及处理',style:'smallText'}],
+                            ['1','1','1','1','1','1','1','1','1','1','1','1'],
+                            ['1','1','1','1','1','1','1','1','1','1','1','1'],
+                            ['1','1','1','1','1','1','1','1','1','1','1','1'],
+                            ['1','1','1','1','1','1','1','1','1','1','1','1'],
+                            ['1','1','1','1','1','1','1','1','1','1','1','1'],
+                            ['1','1','1','1','1','1','1','1','1','1','1','1']
                         ]
                     }
                 },
                 {
-                    text: '透析小结：',
-                    fontSize:13
+                    text: '  '
+                },
+                {
+                    text: '透析小结：'
                 },
                 {
                     table: {
                         widths: ['*', '*', '*'],
                         body: [
-                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
-                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
-                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}],
-                            [{text:['姓名：',{text:'张三',color:'blue'}]},{text:['性别：',{text:'男',color:'blue'}]},{text:['年龄：',{text:'54',color:'blue'}]}]
+                            [{text:[{text:'本次血液净化为：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'历时：',style:'text'},{text:data.name,style:'data'},{text:'小时',style:'text'}]},{text:[{text:'血压波动于：',style:'text'},{text:data.name,style:'data'},{text:'mmHg：',style:'text'}]}],
+                            [{text:[{text:'置管情况：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'内瘘情况：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'静脱水(kg)：',style:'text'},{text:data.name,style:'data'}]}],
+                            [{text:[{text:'透析器凝血：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'动脉凝血：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'动脉血：',style:'text'},{text:data.name,style:'data'}]}],
+                            [{text:[{text:'医生：',style:'text'},{text:data.name,style:'data'}]},{text:[{text:'下机护士：',style:'text'},{text:data.name,style:'data'}]},'']
                         ]
-                    }
+                    },
+                    layout:'noBorders'
                 },
 
             ],
             defaultStyle:{
                 font:'msyh'
+            },
+            styles:{
+                header:{
+                    fontSize:15,
+                    alignment:'center'
+                },
+                text:{
+                    fontSize:10
+                },
+                smallText:{
+                    fontSize:7
+                },
+                center:{
+                    alignment:'center'
+                },
+                right:{
+                    alignment:'right'
+                },
+                data:{
+                    fontSize:10,
+                    color:'blue'
+                }
             }
         };
-        pdfMake.createPdf(docDefinition).open();
+
+        var pdf = pdfMake.createPdf(docDefinition);
+
+        //多次回调
+//        $.when(
+//                $.ajax('url'),
+//                $.ajax('url2')
+//        )
+//                .then(successCallback,failCallback);
+////回调函数会在2个ajax都完成的情况下才会执行
+//        注：$.ajax(‘url’) 返回的是一个Promise对象
+//        $.when(
+//                console.log(1),
+//                console.log(2),
+//                console.log(3)
+//        ).then(function () {
+//                    console.log(4)
+//                });
+
+        $("#export").on('click', function () {
+            pdf.open();
+        });
     });
 </script>
 </body>
